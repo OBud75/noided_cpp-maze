@@ -5,11 +5,11 @@
 #include <random>
 #include <chrono>
 
-// Taille du labirynthe
+// Taille du labyrinthe
 const int HEIGHT = 25;
 const int WIDTH = 53;
 
-// Fonction qui génère une disposition aléatoire pour l'intérieur du labirynthe sur le principe du retour sur trace
+// Fonction qui génère une disposition aléatoire pour l'intérieur du labyrinthe sur le principe du retour sur trace
 void generateMaze(std::vector<std::vector<char>>& maze, int row, int col) {
     // Definition des directions (up, down, left, right)
     const int directions[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -19,7 +19,7 @@ void generateMaze(std::vector<std::vector<char>>& maze, int row, int col) {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(indices.begin(), indices.end(), std::default_random_engine(seed));
 
-    // Attempt to move in each shuffled direction
+    // Vérification des déplacements
     for (const auto& index : indices) {
         int newRow = row + directions[index][0] * 2;
         int newCol = col + directions[index][1] * 2;
@@ -46,10 +46,10 @@ void drawMaze() {
     maze[entryRow][entryCol] = 'S';
     maze[exitRow][exitCol] = 'F';
 
-    // Appel de la fonction de génération aléatoire du labirynthe
+    // Appel de la fonction de génération aléatoire du labyrinthe
     generateMaze(maze, entryRow, entryCol);
 
-    // Dessin du labirynthe
+    // Dessin du labyrinthe
     for (int i = 0; i < HEIGHT; ++i) {
         for (int j = 0; j < WIDTH; ++j) {
             mvprintw(i, j, "%c", maze[i][j]);
