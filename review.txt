@@ -1,0 +1,16 @@
+Générer un labyrinthe de manière aléatoire sans recourir à la méthode "essayer jusqu’à ce que ça fonctionne" est un défi complexe.
+
+En lien avec le cours, le code pourrait être organisé en classes pour séparer les responsabilités.
+Par exemple, une classe Maze pourrait être responsable de la génération et de l’affichage du labyrinthe, tandis qu’une classe Player pourrait gérer le mouvement du joueur.
+
+Il est souvent préférable de séparer la logique "métier" de l’affichage.
+Par exemple, si vous souhaitez changer de bibliothèque pour gérer l’affichage, comment procéderiez-vous avec le code actuel ?
+La logique de l’interface utilisateur pourrait être gérée par une classe Window, qui se chargerait de l’affichage (hauteur, largeur, dessin, etc.).
+Ainsi, la condition if (mvinch(nextPlayerY, nextPlayerX) == '#') pourrait devenir if (maze.get(nextPlayerY).get(nextPlayerX) == 'X').
+
+Il est préférable de documenter le code en expliquant pourquoi et comment l’utiliser, plutôt que de simplement décrire ce qu’il fait (ce qui est généralement clair à partir du code lui-même).
+Par exemple, avec le commentaire "Vérification si la prochaine position est un mur", vous avez déjà fait une grande partie du travail en séparant la fonctionnalité et en la décrivant de manière assez claire.
+Allez jusqu’au bout des choses : encapsulez ce bout de code dans une fonction verifyIfPositionIsWall(int nextPlayerY, int nextPlayerX).
+Vous n’aurez ensuite plus qu’à vous poser la question de savoir à quelle classe revient la responsabilité de faire cela (probablement Maze et non Window).
+
+13/20
